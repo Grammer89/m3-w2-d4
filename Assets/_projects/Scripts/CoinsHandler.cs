@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CoinsHandler : MonoBehaviour
 {
-    private int _coins;
+    [SerializeField] private int _coins = 0;
     // Start is called before the first frame update
     //Constructor
     public CoinsHandler()
@@ -17,9 +17,7 @@ public class CoinsHandler : MonoBehaviour
     public void SetCoins(int coins)
     {
         _coins += coins;
-        Debug.Log("<color=Yellow>Il Player ha ottenuto: " + _coins + " Coins!</color>");
+        Debug.Log("Il Player ha ottenuto: " + _coins + " Coins!");
     }
-
-
 
 }

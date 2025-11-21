@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-
+    [SerializeField] int _damage = 1;
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (_damage == 0)
+        { _damage = 1; }
+
         if (other.CompareTag("Player"))
         {
             //Debug.Log("Player Intercettato");
@@ -14,17 +17,22 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject, 2f);
             Debug.Log("<color=orange>BOOM</color>");
 
-            //check se player è morto
+
             LifeController myHealthComponent = other.GetComponent<LifeController>();
-            myHealthComponent.TakeDamage(-1);
-            if (myHealthComponent.GetHealthPoint() == 0)
+            if (myHealthComponent)
             {
-                other.gameObject.SetActive(false);
-                Destroy(other.gameObject, 5);
-                Debug.Log("<color=red>VOLEEEEEEEEEEVI VINCERE</color>");
+                myHealthComponent.TakeDamage(-_damage);
+                //check se player è morto
+                if (myHealthComponent.GetHealthPoint() == 0)
+                {
+                    other.gameObject.SetActive(false);
+                    Destroy(other.gameObject, 5);
+                    Debug.Log("<color=red>VOLEEEEEEEEEEVI VINCERE</color>");
+                }
             }
 
         }
     }
-
 }
+
+

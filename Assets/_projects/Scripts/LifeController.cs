@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class LifeController : MonoBehaviour
 {
-    [SerializeField] private int _healthLife;
+    [SerializeField] private int _healthLife  = 3;
 
     // Start is called before the first frame update
 
     //Constructor
-    public LifeController( )
+    public LifeController()
     {
     }
     public LifeController(int hp)
@@ -23,7 +23,7 @@ public class LifeController : MonoBehaviour
     }
 
     //Setter
-    public void SetHealthPoint(int hp)
+    private void SetHealthPoint(int hp)
     {
         if (hp + _healthLife <= 0)
         {
@@ -36,8 +36,11 @@ public class LifeController : MonoBehaviour
             Debug.Log("HP restanti: " + _healthLife);
         }
     }
+
     //Getter
     public int GetHealthPoint() => _healthLife;
+
+    //Function
     public void TakeDamage(int damage)
     { SetHealthPoint(damage); }
     public void TakeHeal(int heal)
